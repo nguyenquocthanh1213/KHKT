@@ -61,8 +61,20 @@ def main():
     last = round_of(gfiles[-1])
     gpath = lambda r: run_dir / "global" / f"global_round_{r:02d}.pt"
 
-    sel = {"first,last": {1, last}, "all": set(range(1, last + 1))}.get(
-        a.client_rounds, {int(x) for x in a.client_rounds.split(",") if x})
+    # Avoid dict.get(..., parsed_value): Python evaluates parsed_value eagerly,
+    # which previously tried int("first") even when the key was "first,last".
+    if a.client_rounds == "first,last":
+        sel = {1, last}
+    elif a.client_rounds == "all":
+        sel = set(range(1, last + 1))
+    else:
+        try:
+            sel = {int(x.strip()) for x in a.client_rounds.split(",") if x.strip()}
+        except ValueError as exc:
+            raise SystemExit("--client_rounds phai la 'first,last', 'all', hoac danh sach so nhu 1,5,10") from exc
+        invalid = sorted(r for r in sel if r < 1 or r > last)
+        if invalid:
+            raise SystemExit(f"--client_rounds ngoai pham vi 1..{last}: {invalid}")
     server_rounds = list(range(0, last + 1)) if a.all_rounds else sorted({0, last})
 
     model = build_model(pretrained=False).to(device)
