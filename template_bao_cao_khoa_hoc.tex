@@ -1,0 +1,411 @@
+% ============================================================
+% TEMPLATE BÁO CÁO NGHIÊN CỨU KHOA HỌC KỸ THUẬT
+% Dùng làm khung hướng dẫn cho nhiều đề tài khác nhau.
+% Biên dịch bằng XeLaTeX hoặc LuaLaTeX (khuyến nghị XeLaTeX).
+%
+% CÁCH DÙNG:
+% 1. Thay nội dung trong [ngoặc vuông] bằng thông tin dự án.
+% 2. Các đoạn bắt đầu bằng "HƯỚNG DẪN:" là ghi chú cho người viết;
+%    xóa chúng trước khi nộp báo cáo chính thức.
+% 3. Xóa các mục không phù hợp và thêm mục cần thiết cho đề tài.
+% 4. Không bịa kết quả, số liệu, tài liệu tham khảo hoặc kết luận.
+% ============================================================
+
+\documentclass[12pt,a4paper]{report}
+
+% ---------- Ngôn ngữ và phông chữ (XeLaTeX/LuaLaTeX) ----------
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{vietnamese}
+\setmainfont{Times New Roman} % Nếu không có, thử TeX Gyre Termes
+\setsansfont{Arial}           % Có thể đổi thành TeX Gyre Heros
+\setmonofont{Courier New}
+
+% ---------- Trình bày trang ----------
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=3cm,right=2cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0pt}
+\usepackage{microtype}
+
+% ---------- Hình, bảng, công thức ----------
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amsmath,amssymb}
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{font=small,labelfont=bf}
+\usepackage{siunitx}
+
+% ---------- Mục lục, liên kết và trích dẫn ----------
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=blue,
+  pdftitle={[Tên đề tài]},
+  pdfauthor={[Tên tác giả/nhóm tác giả]}
+}
+\usepackage[numbers,sort&compress]{natbib}
+\bibliographystyle{unsrtnat}
+
+% ---------- Định dạng tiêu đề ----------
+\usepackage{titlesec}
+\titleformat{\chapter}[hang]
+  {\normalfont\bfseries\Large}{\thechapter.}{0.7em}{}
+\titlespacing*{\chapter}{0pt}{-10pt}{18pt}
+\titleformat{\section}
+  {\normalfont\bfseries\large}{\thesection}{0.7em}{}
+\titleformat{\subsection}
+  {\normalfont\bfseries\normalsize}{\thesubsection}{0.7em}{}
+
+% ---------- Lệnh hỗ trợ người viết ----------
+\newcommand{\huongdan}[1]{%
+  \par\smallskip\noindent
+  \textit{\textbf{HƯỚNG DẪN NGƯỜI VIẾT:} #1}%
+  \par\smallskip}
+\newcommand{\dien}[1]{\textbf{[#1]}}
+\newcommand{\tukhoa}[1]{\textbf{#1}}
+
+\begin{document}
+
+% ============================================================
+% BÌA
+% ============================================================
+\begin{titlepage}
+  \centering
+  {\large \textbf{[TÊN CƠ QUAN / TRƯỜNG / ĐƠN VỊ]}\par}
+  \vspace{1.5cm}
+  {\large \textbf{[TÊN CUỘC THI / CHƯƠNG TRÌNH NGHIÊN CỨU]}\par}
+  \vspace{2.2cm}
+  {\Large\bfseries BÁO CÁO NGHIÊN CỨU KHOA HỌC KỸ THUẬT\par}
+  \vspace{1cm}
+  {\huge\bfseries [TÊN ĐỀ TÀI]\par}
+  \vspace{1.5cm}
+  \begin{flushleft}
+    \textbf{Lĩnh vực:} [Lĩnh vực dự thi/nghiên cứu]\\[0.4cm]
+    \textbf{Tác giả:} [Họ tên tác giả hoặc các thành viên]\\[0.4cm]
+    \textbf{Người hướng dẫn:} [Nếu có]\\[0.4cm]
+    \textbf{Đơn vị:} [Trường/lớp/đơn vị]
+  \end{flushleft}
+  \vfill
+  {\large [Địa điểm] -- [Năm]\par}
+\end{titlepage}
+
+% ============================================================
+% MỤC LỤC
+% ============================================================
+\pagenumbering{roman}
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+% ============================================================
+\chapter{Giới thiệu vấn đề nghiên cứu}
+% Mục tiêu chương: giúp người đọc hiểu vấn đề, tầm quan trọng,
+% nghiên cứu trước đây và khoảng trống mà dự án muốn giải quyết.
+% ============================================================
+
+\section{Dẫn nhập}
+
+\huongdan{Mở đầu từ bối cảnh rộng của lĩnh vực, sau đó thu hẹp dần
+vào một vấn đề cụ thể. Giải thích vấn đề ảnh hưởng đến ai hoặc điều gì,
+vì sao đáng nghiên cứu, và các phương pháp hiện tại còn hạn chế ở đâu.
+Dùng dẫn chứng đáng tin cậy và trích dẫn nguồn. Tránh chỉ khẳng định
+rằng đề tài ``rất quan trọng'' mà không có bằng chứng.}
+
+[Viết phần bối cảnh và giới thiệu lĩnh vực.]
+
+\subsection{Vấn đề cần giải quyết}
+
+\huongdan{Mô tả cụ thể hiện tượng, khó khăn hoặc nhu cầu chưa được đáp ứng.
+Nếu có thể, đưa ví dụ minh họa, dữ liệu nền, tình huống thực tế hoặc hình
+ảnh thể hiện hạn chế của phương pháp hiện tại.}
+
+[Trình bày vấn đề cụ thể và ví dụ minh họa.]
+
+\subsection{Mục tiêu nghiên cứu}
+
+\huongdan{Nêu mục tiêu chính có thể kiểm chứng. Có thể tách thành mục tiêu
+tổng quát và các mục tiêu cụ thể. Mục tiêu nên mô tả điều dự án sẽ xây dựng,
+đề xuất, đo lường hoặc so sánh.}
+
+Mục tiêu chính của đề tài là [mục tiêu chính].
+
+Các mục tiêu cụ thể:
+\begin{itemize}
+  \item [Mục tiêu cụ thể 1.]
+  \item [Mục tiêu cụ thể 2.]
+  \item [Mục tiêu cụ thể 3.]
+\end{itemize}
+
+\subsection{Câu hỏi nghiên cứu và/hoặc giả thuyết}
+
+\huongdan{Viết câu hỏi có thể trả lời bằng phương pháp và dữ liệu của dự án.
+Nếu lĩnh vực phù hợp, nêu giả thuyết cùng cơ sở dự đoán. Không bắt buộc
+phải có giả thuyết nếu nghiên cứu mang tính khám phá hoặc xây dựng hệ thống.}
+
+\begin{enumerate}
+  \item [Câu hỏi nghiên cứu 1.]
+  \item [Câu hỏi nghiên cứu 2.]
+  \item [Câu hỏi nghiên cứu 3, nếu cần.]
+\end{enumerate}
+
+\subsection{Phạm vi nghiên cứu}
+
+\huongdan{Nêu rõ đối tượng, dữ liệu, điều kiện thử nghiệm, giới hạn thời gian
+và những vấn đề dự án không giải quyết. Phạm vi hợp lý giúp tránh tuyên bố
+quá rộng so với bằng chứng thu được.}
+
+[Đối tượng, phạm vi, điều kiện và giới hạn của nghiên cứu.]
+
+\section{Các nghiên cứu có liên quan}
+
+\huongdan{Tổng hợp những công trình, sản phẩm hoặc phương pháp gần với đề tài.
+Với mỗi hướng nghiên cứu, trình bày: ý tưởng chính, điểm mạnh, hạn chế và
+mối liên hệ với vấn đề của dự án. Không chỉ liệt kê từng bài báo; cần so sánh
+để dẫn tới khoảng trống nghiên cứu. Trích dẫn đầy đủ các nguồn đã sử dụng.}
+
+\subsection{Hướng nghiên cứu/phương pháp thứ nhất}
+
+[Giải thích phương pháp, kết quả chính, ưu điểm và hạn chế.] \citep{ref1}
+
+\subsection{Hướng nghiên cứu/phương pháp thứ hai}
+
+[Giải thích phương pháp, kết quả chính, ưu điểm và hạn chế.] \citep{ref2}
+
+\subsection{So sánh và xác định khoảng trống nghiên cứu}
+
+\huongdan{Tóm tắt điều đã được giải quyết và điều còn chưa được giải quyết.
+Nêu rõ dự án kế thừa gì, khác biệt ở đâu và đóng góp dự kiến là gì. Tránh
+tuyên bố ``chưa ai từng nghiên cứu'' nếu chưa có khảo sát tài liệu đủ rộng.}
+
+[Khoảng trống nghiên cứu và lý do dự án đề xuất cách tiếp cận hiện tại.]
+
+% ============================================================
+\chapter{Phương pháp và quá trình thực hiện}
+% Có thể đổi tên chương thành "Tóm tắt nghiên cứu", "Thiết kế hệ thống"
+% hoặc "Phương pháp nghiên cứu" cho phù hợp lĩnh vực.
+% ============================================================
+
+\section{Tổng quan giải pháp đề xuất}
+
+\huongdan{Tóm tắt giải pháp trong một vài đoạn: đầu vào là gì, quy trình chính
+gồm những bước nào, đầu ra là gì và giải pháp xử lý hạn chế đã nêu ra ra sao.
+Nếu hữu ích, đặt sơ đồ tổng quan ở đây.}
+
+[Giới thiệu ngắn gọn giải pháp đề xuất.]
+
+% Ví dụ chèn hình: thay "figures/overview.png" bằng đường dẫn hình của bạn.
+% Nếu chưa có hình, hãy xóa khối figure này.
+\begin{figure}[H]
+  \centering
+  % \includegraphics[width=0.85\textwidth]{figures/overview.png}
+  \fbox{\parbox[c][3cm][c]{0.8\textwidth}{\centering
+  [Chèn sơ đồ tổng quan giải pháp tại đây]}}
+  \caption{Sơ đồ tổng quan của giải pháp đề xuất.}
+  \label{fig:overview}
+\end{figure}
+
+\section{Cơ sở lý thuyết và công cụ}
+
+\huongdan{Chỉ trình bày kiến thức trực tiếp cần để hiểu giải pháp: thuật toán,
+mô hình, định nghĩa, công thức, thư viện, thiết bị hoặc công cụ liên quan.
+Phân biệt kiến thức kế thừa từ tài liệu với phần do nhóm tự đề xuất.}
+
+[Trình bày nền tảng lý thuyết, công cụ và lý do lựa chọn.]
+
+\section{Thiết kế phương pháp hoặc kiến trúc hệ thống}
+
+\huongdan{Mô tả đủ chi tiết để người khác hiểu cách giải pháp hoạt động.
+Tùy lĩnh vực, chia thành các module, giai đoạn, thành phần, quy trình hoặc
+thí nghiệm. Với mỗi thành phần, nêu đầu vào, xử lý và đầu ra.}
+
+\subsection{Thành phần/giai đoạn thứ nhất}
+
+[Chức năng, cách hoạt động, dữ liệu đầu vào và đầu ra.]
+
+\subsection{Thành phần/giai đoạn thứ hai}
+
+[Chức năng, cách hoạt động, dữ liệu đầu vào và đầu ra.]
+
+\subsection{Thuật toán hoặc quy trình thực hiện}
+
+\huongdan{Có thể dùng lưu đồ, giả mã, công thức hoặc các bước đánh số.
+Giải thích các ký hiệu trong công thức và các tham số quan trọng. Không
+đưa công thức vào chỉ để làm báo cáo trông có vẻ kỹ thuật.}
+
+\begin{enumerate}
+  \item [Bước 1: mô tả thao tác.]
+  \item [Bước 2: mô tả thao tác.]
+  \item [Bước 3: mô tả thao tác.]
+\end{enumerate}
+
+% Ví dụ công thức (xóa nếu không phù hợp):
+\[
+  [\text{Công thức hoặc mô hình toán học của đề tài}]
+\]
+
+\section{Dữ liệu, vật liệu hoặc môi trường thực hiện}
+
+\huongdan{Mô tả nguồn dữ liệu/vật liệu, cách thu thập, tiêu chí chọn mẫu,
+cách tiền xử lý, thiết bị, phần cứng/phần mềm và môi trường thử nghiệm.
+Nêu giấy phép hoặc vấn đề đạo đức/quyền riêng tư nếu có liên quan.}
+
+[Thông tin dữ liệu, vật liệu, thiết bị và môi trường.]
+
+\section{Triển khai sản phẩm hoặc nguyên mẫu}
+
+\huongdan{Nếu dự án tạo ra phần mềm, thiết bị hoặc ứng dụng, mô tả cách
+hiện thực hóa giải pháp, kiến trúc triển khai và chức năng chính. Nếu dự án
+không tạo sản phẩm, có thể đổi mục này thành quy trình thực nghiệm hoặc
+xóa bỏ. Phân biệt phần đã hoàn thành với phần mới ở mức thiết kế.}
+
+[Công nghệ sử dụng, cách triển khai, chức năng và trạng thái hoàn thành.]
+
+% ============================================================
+\chapter{Kết quả và đánh giá}
+% Chỉ báo cáo kết quả đã thực sự thu được. Không để số liệu ví dụ
+% trong bản nộp chính thức.
+% ============================================================
+
+\section{Thiết kế đánh giá/thực nghiệm}
+
+\huongdan{Nêu cách kiểm tra giải pháp có đạt mục tiêu hay không. Xác định
+đối chứng hoặc phương pháp cơ sở, bộ dữ liệu/mẫu thử, số lần chạy, chỉ số
+đánh giá và điều kiện để so sánh công bằng. Nếu có khảo sát người dùng,
+mô tả người tham gia, câu hỏi, quy trình và cách tổng hợp phản hồi.}
+
+[Thiết kế thí nghiệm, tiêu chí đánh giá và phương pháp đối chứng.]
+
+\section{Kết quả chính}
+
+\huongdan{Trình bày kết quả bằng bảng, biểu đồ, hình ảnh hoặc ví dụ đại diện.
+Mỗi hình/bảng cần có số thứ tự, chú thích và được nhắc tới trong phần văn bản.
+Nêu kết quả quan sát được, không chỉ nói rằng phương pháp ``tốt hơn''.}
+
+\begin{table}[H]
+  \centering
+  \caption{Mẫu bảng tổng hợp kết quả thực nghiệm.}
+  \label{tab:results}
+  \begin{tabularx}{\textwidth}{Xcc}
+    \toprule
+    \textbf{Phương pháp/điều kiện} & \textbf{Chỉ số 1} & \textbf{Chỉ số 2} \\
+    \midrule
+    [Phương pháp cơ sở] & [Kết quả] & [Kết quả] \\
+    [Phương pháp đề xuất] & [Kết quả] & [Kết quả] \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  % \includegraphics[width=0.8\textwidth]{figures/result.png}
+  \fbox{\parbox[c][3cm][c]{0.8\textwidth}{\centering
+  [Chèn biểu đồ, ảnh kết quả hoặc minh họa tại đây]}}
+  \caption{[Mô tả chính xác nội dung hình và điều kiện tạo ra kết quả.]}
+  \label{fig:result}
+\end{figure}
+
+\section{Đánh giá định lượng}
+
+\huongdan{Báo cáo chỉ số định lượng phù hợp với bài toán, định nghĩa cách tính
+và giải thích ý nghĩa. So sánh với baseline hoặc các điều kiện khác nếu có.
+Nếu kết quả biến thiên, trình bày độ lệch, khoảng tin cậy hoặc số lần lặp khi
+phù hợp. Không chọn chỉ số chỉ vì nó làm kết quả trông tốt hơn.}
+
+[Chỉ số, kết quả, so sánh và diễn giải.]
+
+\section{Đánh giá định tính hoặc đánh giá bởi con người}
+
+\huongdan{Dùng khi phù hợp với đề tài. Nêu tiêu chí đánh giá, cách chọn người
+đánh giá, số lượng mẫu và cách giảm thiên lệch. Có thể đưa ví dụ thành công
+và thất bại, phản hồi người dùng hoặc phân tích trường hợp điển hình. Nếu không
+thực hiện loại đánh giá này, hãy xóa mục hoặc giải thích vì sao không áp dụng.}
+
+[Kết quả đánh giá định tính/khảo sát và các ví dụ minh họa.]
+
+\section{Thảo luận kết quả}
+
+\huongdan{Giải thích kết quả cho thấy điều gì đối với câu hỏi nghiên cứu.
+Nêu kết quả phù hợp hoặc không phù hợp với giả thuyết, các đánh đổi, trường hợp
+thất bại và những yếu tố có thể ảnh hưởng. Phân biệt rõ quan sát thực tế với
+suy luận của tác giả.}
+
+[Diễn giải ý nghĩa, nguyên nhân, đánh đổi và giới hạn của kết quả.]
+
+\section{Hạn chế của nghiên cứu}
+
+\huongdan{Nêu giới hạn về dữ liệu, cỡ mẫu, tài nguyên, độ tổng quát, thời gian,
+độ tin cậy hoặc điều kiện thử nghiệm. Trình bày trung thực cả các điểm yếu có
+thể ảnh hưởng đến kết luận.}
+
+[Các hạn chế đã xác định và tác động có thể có.]
+
+% ============================================================
+\chapter{Kết luận và hướng phát triển}
+% ============================================================
+
+\section{Kết luận}
+
+\huongdan{Trả lời trực tiếp từng câu hỏi nghiên cứu. Tóm tắt đóng góp chính,
+kết quả quan trọng nhất và mức độ đạt được mục tiêu. Chỉ kết luận những gì
+được dữ liệu và thí nghiệm hỗ trợ; không đưa kết quả mới chưa trình bày trước đó.}
+
+[Những kết luận chính của nghiên cứu.]
+
+\section{Đóng góp của đề tài}
+
+\huongdan{Nêu rõ phần mới hoặc hữu ích do dự án thực hiện: phương pháp, quy trình,
+hệ thống, bộ dữ liệu, phân tích hoặc bằng chứng thực nghiệm. Phân biệt đóng góp
+của nhóm với các công cụ và kết quả kế thừa từ công trình trước.}
+
+[Các đóng góp cụ thể và bằng chứng hỗ trợ.]
+
+\section{Hướng phát triển}
+
+\huongdan{Đề xuất những bước tiếp theo dựa trên hạn chế đã phát hiện hoặc câu hỏi
+mới nảy sinh từ kết quả. Ưu tiên hướng phát triển cụ thể, có lý do, thay vì chỉ
+nêu chung chung rằng sẽ ``cải thiện hệ thống''.}
+
+[Các cải tiến hoặc thí nghiệm tiếp theo.]
+
+% ============================================================
+% TÀI LIỆU THAM KHẢO
+% ============================================================
+\begin{thebibliography}{99}
+
+\bibitem{ref1}
+[Tác giả].
+\newblock [Tên bài báo hoặc tài liệu].
+\newblock [Tên tạp chí/hội nghị/nhà xuất bản], [năm].
+\newblock [DOI hoặc URL nếu có].
+
+\bibitem{ref2}
+[Tác giả].
+\newblock [Tên bài báo hoặc tài liệu thứ hai].
+\newblock [Nguồn xuất bản], [năm].
+\newblock [DOI hoặc URL nếu có].
+
+\end{thebibliography}
+
+% ============================================================
+% PHỤ LỤC (tùy chọn)
+% Có thể đưa vào đây bảng hỏi, thông số chi tiết, giả mã, bảng số liệu
+% đầy đủ, hướng dẫn tái lập thí nghiệm hoặc hình bổ sung.
+% ============================================================
+\appendix
+\chapter{Thông tin bổ sung (nếu cần)}
+
+\huongdan{Chỉ thêm phụ lục khi có tài liệu hỗ trợ việc kiểm chứng hoặc tái lập
+nghiên cứu nhưng quá dài để đặt trong phần chính.}
+
+[Thông tin bổ sung.]
+
+\end{document}

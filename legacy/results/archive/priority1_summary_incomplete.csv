@@ -1,0 +1,7 @@
+,test_acc,test_acc,test_f1,test_f1,test_balacc,test_balacc
+,mean,std,mean,std,mean,std
+config,,,,,,
+fedavg,0.9250,,0.9229,,0.9250,
+fedprox,0.9219,,0.9196,,0.9219,
+fedprox_dp,0.6744,,0.6474,,0.6744,
+fedprox_dp_autoclip,0.6587,,0.6319,,0.6587,

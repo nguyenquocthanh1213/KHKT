@@ -3,3 +3,6 @@ torchvision>=0.16
 numpy
 Pillow
 matplotlib   # tuy chon (ve hinh trong evaluate.py)
+
+scikit-learn
+opacus>=1.4
